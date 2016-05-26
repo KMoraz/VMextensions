@@ -113,13 +113,13 @@ then
 	echo "Installing Docker-Compose $COMPOSE_VER to $COMPOSE_DIR" >> $LOG
 	echo "`docker-compose --version` successfully installed" >> $LOG
 else
-	echo "`docker-compose --version` already installed" >> $LOG
+	echo "`docker-compose --version`" >> $LOG
 fi
 
 #===========================
 # CONTAINER INSTALL
 #===========================
-INSTALL_DIR=/usr/local/dc-${PRODUCT}
+INSTALL_DIR=/usr/local/dc_${PRODUCT}
 
 if [ -d "$INSTALL_DIR" ];
 then

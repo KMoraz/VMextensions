@@ -4,4 +4,4 @@ logstash:
     - 5000:5000
   command: logstash -f /config-dir/logstash.conf
   volumes:
-    - /usr/local/logstash:/config-dir
+    - /usr/local/dc_logstash:/config-dir
