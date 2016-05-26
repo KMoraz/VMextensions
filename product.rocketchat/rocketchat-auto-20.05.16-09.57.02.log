@@ -1,0 +1,162 @@
+RocketChat with MongoDB via Azure auto install (rocketchat-install.sh)
+Start Date/Time: Fri May 20 09:57:02 UTC 2016
+----------------
+Hostname = rocketchatukrbsvr01
+MongoDB Port = 27017
+RocketChat Port = 3000
+RC URL = ukrbchat.casds.co.uk
+----------------
+Running system updates...
+Update completed: Fri May 20 09:57:12 UTC 2016
+----------------
+Installing docker...
+Docker version 1.11.1, build 5604cbe
+Installing Docker-Compose 1.7.1 to /usr/local/bin/docker-compose
+docker-compose version 1.7.1, build 0a9ab35 successfully installed
+----------------
+----------------
+Created docker-compose file: /usr/local/docker-compose.yml
+----------------
+Created directories: /media/rocketchat/data/{db,dump}
+----------------
+Initial docker-compose started at: Fri May 20 09:59:48 UTC 2016
+Pulling db (mongo:latest)...
+latest: Pulling from library/mongo
+Digest: sha256:d3f19457c816bb91c5639e3b1b50f67370e3b3a58b812d73446d7b966469c65e
+Status: Downloaded newer image for mongo:latest
+Pulling rocketchat (rocketchat/rocket.chat:latest)...
+latest: Pulling from rocketchat/rocket.chat
+Digest: sha256:2d7a87ebb5d7688903e9f25b9bc00a8902a9d5dda97d8a197ff40afa333e076b
+Status: Downloaded newer image for rocketchat/rocket.chat:latest
+Creating local_db_1
+Creating local_rocketchat_1
+Restarting containers to overcome failed to connect to DB on 
+Restarting local_rocketchat_1 ... 
+Restarting local_db_1 ... 
+[2A[2KRestarting local_rocketchat_1 ... done[2B[1A[2KRestarting local_db_1 ... done[1B----------------
+Created initialisation script: /etc/init/docker-compose.conf
+----------------
+MongoDB initialisation:
+Attaching to local_rocketchat_1, local_db_1
+[36mrocketchat_1  |[0m Error: failed to connect to [db:27017]
+[33mdb_1          |[0m 2016-05-20T10:00:56.116+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=1a0a0e241586
+[33mdb_1          |[0m 2016-05-20T10:00:56.116+0000 I CONTROL  [initandlisten] db version v3.2.6
+[33mdb_1          |[0m 2016-05-20T10:00:56.116+0000 I CONTROL  [initandlisten] git version: 05552b562c7a0b3143a729aaa0838e558dc49b25
+[33mdb_1          |[0m 2016-05-20T10:00:56.116+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1e 11 Feb 2013
+[33mdb_1          |[0m 2016-05-20T10:00:56.116+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+[33mdb_1          |[0m 2016-05-20T10:00:56.116+0000 I CONTROL  [initandlisten] modules: none
+[33mdb_1          |[0m 2016-05-20T10:00:56.117+0000 I CONTROL  [initandlisten] build environment:
+[33mdb_1          |[0m 2016-05-20T10:00:56.117+0000 I CONTROL  [initandlisten]     distmod: debian71
+[36mrocketchat_1  |[0m     at [object Object].<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/server.js:556:74)
+[36mrocketchat_1  |[0m     at [object Object].<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/connection_pool.js:156:15)
+[36mrocketchat_1  |[0m     at Socket.<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/connection.js:534:10)
+[36mrocketchat_1  |[0m Error: failed to connect to [db:27017]
+[33mdb_1          |[0m 2016-05-20T10:00:56.117+0000 I CONTROL  [initandlisten]     distarch: x86_64
+[33mdb_1          |[0m 2016-05-20T10:00:56.117+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+[33mdb_1          |[0m 2016-05-20T10:00:56.117+0000 I CONTROL  [initandlisten] options: { storage: { mmapv1: { smallFiles: true } } }
+[33mdb_1          |[0m 2016-05-20T10:00:56.155+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=1G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+[33mdb_1          |[0m 2016-05-20T10:00:56.921+0000 W STORAGE  [initandlisten] Detected configuration for non-active storage engine mmapv1 when current storage engine is wiredTiger
+[33mdb_1          |[0m 2016-05-20T10:00:56.921+0000 I CONTROL  [initandlisten] 
+[33mdb_1          |[0m 2016-05-20T10:00:56.921+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+[33mdb_1          |[0m 2016-05-20T10:00:56.921+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[33mdb_1          |[0m 2016-05-20T10:00:56.922+0000 I CONTROL  [initandlisten] 
+[36mrocketchat_1  |[0m     at [object Object].<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/server.js:556:74)
+[33mdb_1          |[0m 2016-05-20T10:00:56.922+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+[33mdb_1          |[0m 2016-05-20T10:00:56.922+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[33mdb_1          |[0m 2016-05-20T10:00:56.922+0000 I CONTROL  [initandlisten] 
+[33mdb_1          |[0m 2016-05-20T10:00:56.923+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+[33mdb_1          |[0m 2016-05-20T10:00:56.923+0000 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+[33mdb_1          |[0m 2016-05-20T10:01:25.470+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+[33mdb_1          |[0m 2016-05-20T10:02:27.387+0000 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+[33mdb_1          |[0m 2016-05-20T10:02:27.387+0000 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+[33mdb_1          |[0m 2016-05-20T10:02:27.388+0000 I CONTROL  [signalProcessingThread] now exiting
+[36mrocketchat_1  |[0m     at [object Object].<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/connection_pool.js:156:15)
+[36mrocketchat_1  |[0m     at Socket.<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/connection.js:534:10)
+[33mdb_1          |[0m 2016-05-20T10:02:27.388+0000 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+[33mdb_1          |[0m 2016-05-20T10:02:27.388+0000 I NETWORK  [signalProcessingThread] closing listening socket: 5
+[33mdb_1          |[0m 2016-05-20T10:02:27.388+0000 I NETWORK  [signalProcessingThread] closing listening socket: 6
+[33mdb_1          |[0m 2016-05-20T10:02:27.388+0000 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+[33mdb_1          |[0m 2016-05-20T10:02:27.388+0000 I NETWORK  [signalProcessingThread] shutdown: going to flush diaglog...
+[33mdb_1          |[0m 2016-05-20T10:02:27.388+0000 I NETWORK  [signalProcessingThread] shutdown: going to close sockets...
+[33mdb_1          |[0m 2016-05-20T10:02:27.388+0000 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+[33mdb_1          |[0m 2016-05-20T10:02:27.797+0000 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+[33mdb_1          |[0m 2016-05-20T10:02:27.797+0000 I CONTROL  [signalProcessingThread] dbexit:  rc: 0
+[33mdb_1          |[0m 2016-05-20T10:02:28.653+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=1a0a0e241586
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten] db version v3.2.6
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten] git version: 05552b562c7a0b3143a729aaa0838e558dc49b25
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1e 11 Feb 2013
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten] modules: none
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten] build environment:
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten]     distmod: debian71
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten]     distarch: x86_64
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+[33mdb_1          |[0m 2016-05-20T10:02:28.657+0000 I CONTROL  [initandlisten] options: { storage: { mmapv1: { smallFiles: true } } }
+[33mdb_1          |[0m 2016-05-20T10:02:28.692+0000 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+[33mdb_1          |[0m 2016-05-20T10:02:28.692+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=1G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+[33mdb_1          |[0m 2016-05-20T10:02:30.077+0000 W STORAGE  [initandlisten] Detected configuration for non-active storage engine mmapv1 when current storage engine is wiredTiger
+[33mdb_1          |[0m 2016-05-20T10:02:30.077+0000 I CONTROL  [initandlisten] 
+[33mdb_1          |[0m 2016-05-20T10:02:30.077+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+[33mdb_1          |[0m 2016-05-20T10:02:30.078+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[33mdb_1          |[0m 2016-05-20T10:02:30.078+0000 I CONTROL  [initandlisten] 
+[33mdb_1          |[0m 2016-05-20T10:02:30.078+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+[33mdb_1          |[0m 2016-05-20T10:02:30.078+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[33mdb_1          |[0m 2016-05-20T10:02:30.078+0000 I CONTROL  [initandlisten] 
+[33mdb_1          |[0m 2016-05-20T10:02:30.079+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+[33mdb_1          |[0m 2016-05-20T10:02:30.079+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+[33mdb_1          |[0m 2016-05-20T10:02:30.080+0000 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+----------------
+RocketChat initialisation:
+Attaching to local_rocketchat_1, local_db_1
+[36mrocketchat_1  |[0m 
+[36mrocketchat_1  |[0m /app/bundle/programs/server/node_modules/fibers/future.js:278
+[36mrocketchat_1  |[0m 						throw(ex);
+[36mrocketchat_1  |[0m 						      ^
+[36mrocketchat_1  |[0m Error: failed to connect to [db:27017]
+[36mrocketchat_1  |[0m     at Object.Future.wait (/app/bundle/programs/server/node_modules/fibers/future.js:398:15)
+[36mrocketchat_1  |[0m     at new MongoConnection (packages/mongo/mongo_driver.js:213:1)
+[36mrocketchat_1  |[0m     at new MongoInternals.RemoteCollectionDriver (packages/mongo/remote_collection_driver.js:4:1)
+[36mrocketchat_1  |[0m     at Object.<anonymous> (packages/mongo/remote_collection_driver.js:38:1)
+[36mrocketchat_1  |[0m     at Object.defaultRemoteCollectionDriver (packages/underscore/underscore.js:750:1)
+[36mrocketchat_1  |[0m     at new Mongo.Collection (packages/mongo/collection.js:102:1)
+[36mrocketchat_1  |[0m     at AccountsServer.AccountsCommon (accounts_common.js:23:18)
+[36mrocketchat_1  |[0m     at new AccountsServer (accounts_server.js:16:5)
+[36mrocketchat_1  |[0m     at Package (globals_server.js:5:12)
+[36mrocketchat_1  |[0m     at /app/bundle/programs/server/packages/accounts-base.js:1814:4
+[36mrocketchat_1  |[0m     - - - - -
+[36mrocketchat_1  |[0m     at [object Object].<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/server.js:556:74)
+[36mrocketchat_1  |[0m     at [object Object].emit (events.js:106:17)
+[36mrocketchat_1  |[0m     at [object Object].<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/connection_pool.js:156:15)
+[36mrocketchat_1  |[0m     at [object Object].emit (events.js:98:17)
+[36mrocketchat_1  |[0m     at Socket.<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/connection.js:534:10)
+[36mrocketchat_1  |[0m     at Socket.emit (events.js:95:17)
+[36mrocketchat_1  |[0m     at net.js:441:14
+[36mrocketchat_1  |[0m     at process._tickCallback (node.js:458:13)
+[36mrocketchat_1  |[0m 
+[36mrocketchat_1  |[0m /app/bundle/programs/server/node_modules/fibers/future.js:278
+[36mrocketchat_1  |[0m 						throw(ex);
+[36mrocketchat_1  |[0m 						      ^
+[36mrocketchat_1  |[0m Error: failed to connect to [db:27017]
+[36mrocketchat_1  |[0m     at Object.Future.wait (/app/bundle/programs/server/node_modules/fibers/future.js:398:15)
+[36mrocketchat_1  |[0m     at new MongoConnection (packages/mongo/mongo_driver.js:213:1)
+[36mrocketchat_1  |[0m     at new MongoInternals.RemoteCollectionDriver (packages/mongo/remote_collection_driver.js:4:1)
+[36mrocketchat_1  |[0m     at Object.<anonymous> (packages/mongo/remote_collection_driver.js:38:1)
+[36mrocketchat_1  |[0m     at Object.defaultRemoteCollectionDriver (packages/underscore/underscore.js:750:1)
+[36mrocketchat_1  |[0m     at new Mongo.Collection (packages/mongo/collection.js:102:1)
+[36mrocketchat_1  |[0m     at AccountsServer.AccountsCommon (accounts_common.js:23:18)
+[36mrocketchat_1  |[0m     at new AccountsServer (accounts_server.js:16:5)
+[36mrocketchat_1  |[0m     at Package (globals_server.js:5:12)
+[36mrocketchat_1  |[0m     at /app/bundle/programs/server/packages/accounts-base.js:1814:4
+[36mrocketchat_1  |[0m     - - - - -
+[36mrocketchat_1  |[0m     at [object Object].<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/server.js:556:74)
+[36mrocketchat_1  |[0m     at [object Object].emit (events.js:106:17)
+[36mrocketchat_1  |[0m     at [object Object].<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/connection_pool.js:156:15)
+[36mrocketchat_1  |[0m     at [object Object].emit (events.js:98:17)
+[36mrocketchat_1  |[0m     at Socket.<anonymous> (/app/bundle/programs/server/npm/npm-mongo/node_modules/mongodb/lib/mongodb/connection/connection.js:534:10)
+[36mrocketchat_1  |[0m     at Socket.emit (events.js:95:17)
+[36mrocketchat_1  |[0m     at net.js:441:14
+[36mrocketchat_1  |[0m     at process._tickCallback (node.js:458:13)
+----------------
+rocketchat-install.sh completed at: Fri May 20 10:02:44 UTC 2016
+Service accessible via: ukrbchat.casds.co.uk:3000 or 10.243.50.13 172.17.0.1 :3000
+System will now reboot...

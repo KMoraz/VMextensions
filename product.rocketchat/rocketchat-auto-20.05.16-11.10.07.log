@@ -1,0 +1,418 @@
+RocketChat with MongoDB via Azure auto install (rocketchat-install.sh)
+Start Date/Time: Fri May 20 11:10:07 UTC 2016
+----------------
+MongoDB Port = 27017
+RocketChat Port = 3000
+RC URL = opexchat.casds.co.uk
+----------------
+Running system updates...
+Update completed: Fri May 20 11:10:17 UTC 2016
+----------------
+Provisioned data drive /dev/sdc mounted at /media/data
+----------------
+Installing docker...
+Docker version 1.11.1, build 5604cbe
+Installing Docker-Compose 1.7.1 to /usr/local/bin/docker-compose
+docker-compose version 1.7.1, build 0a9ab35 successfully installed
+Created docker-compose file: /usr/local/docker-compose.yml
+Created directories: /media/rocketchat/data/{db,dump}
+----------------
+Initial docker-compose started at: Fri May 20 11:16:19 UTC 2016
+Pulling db (mongo:latest)...
+latest: Pulling from library/mongo
+Digest: sha256:d3f19457c816bb91c5639e3b1b50f67370e3b3a58b812d73446d7b966469c65e
+Status: Downloaded newer image for mongo:latest
+Pulling rocketchat (rocketchat/rocket.chat:latest)...
+latest: Pulling from rocketchat/rocket.chat
+Digest: sha256:2d7a87ebb5d7688903e9f25b9bc00a8902a9d5dda97d8a197ff40afa333e076b
+Status: Downloaded newer image for rocketchat/rocket.chat:latest
+Creating local_db_1
+
+ERROR: for db  UnixHTTPConnectionPool(host='localhost', port=None): Read timed out. (read timeout=60)
+An HTTP request took too long to complete. Retry with --verbose to obtain debug information.
+If you encounter this issue regularly because of slow network conditions, consider setting COMPOSE_HTTP_TIMEOUT to a higher value (current value: 60).
+Restarting containers to overcome failed to connect to DB on 
+local_db_1 is up-to-date
+Creating local_rocketchat_1
+----------------
+Created initialisation script: /etc/init/docker-compose.conf
+----------------
+MongoDB initialisation:
+Attaching to local_rocketchat_1, local_db_1
+[33mdb_1          |[0m 2016-05-20T11:19:48.951+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=9f76c4e04d3b
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten] db version v3.2.6
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten] git version: 05552b562c7a0b3143a729aaa0838e558dc49b25
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1e 11 Feb 2013
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten] modules: none
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten] build environment:
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten]     distmod: debian71
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten]     distarch: x86_64
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+[33mdb_1          |[0m 2016-05-20T11:19:48.952+0000 I CONTROL  [initandlisten] options: { storage: { mmapv1: { smallFiles: true } } }
+[33mdb_1          |[0m 2016-05-20T11:19:48.989+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=1G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+[33mdb_1          |[0m 2016-05-20T11:19:49.731+0000 W STORAGE  [initandlisten] Detected configuration for non-active storage engine mmapv1 when current storage engine is wiredTiger
+[33mdb_1          |[0m 2016-05-20T11:19:49.731+0000 I CONTROL  [initandlisten] 
+[33mdb_1          |[0m 2016-05-20T11:19:49.731+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+[33mdb_1          |[0m 2016-05-20T11:19:49.731+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[33mdb_1          |[0m 2016-05-20T11:19:49.732+0000 I CONTROL  [initandlisten] 
+[33mdb_1          |[0m 2016-05-20T11:19:49.732+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+[33mdb_1          |[0m 2016-05-20T11:19:49.732+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+[33mdb_1          |[0m 2016-05-20T11:19:49.732+0000 I CONTROL  [initandlisten] 
+[33mdb_1          |[0m 2016-05-20T11:19:49.732+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+[33mdb_1          |[0m 2016-05-20T11:19:49.733+0000 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+[33mdb_1          |[0m 2016-05-20T11:19:50.044+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+[33mdb_1          |[0m 2016-05-20T11:19:51.103+0000 I NETWORK  [initandlisten] connection accepted from 172.17.0.3:42691 #1 (1 connection now open)
+[33mdb_1          |[0m 2016-05-20T11:19:51.116+0000 I NETWORK  [conn1] end connection 172.17.0.3:42691 (0 connections now open)
+[33mdb_1          |[0m 2016-05-20T11:19:51.119+0000 I NETWORK  [initandlisten] connection accepted from 172.17.0.3:42692 #2 (1 connection now open)
+[33mdb_1          |[0m 2016-05-20T11:19:51.120+0000 I NETWORK  [initandlisten] connection accepted from 172.17.0.3:42693 #3 (2 connections now open)
+[33mdb_1          |[0m 2016-05-20T11:19:51.121+0000 I NETWORK  [initandlisten] connection accepted from 172.17.0.3:42694 #4 (3 connections now open)
+[33mdb_1          |[0m 2016-05-20T11:19:51.122+0000 I NETWORK  [initandlisten] connection accepted from 172.17.0.3:42695 #5 (4 connections now open)
+[33mdb_1          |[0m 2016-05-20T11:19:51.122+0000 I NETWORK  [initandlisten] connection accepted from 172.17.0.3:42696 #6 (5 connections now open)
+[33mdb_1          |[0m 2016-05-20T11:19:51.315+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, unique: true, key: { username: 1 }, name: "username_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.315+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:51.316+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:51.317+0000 I COMMAND  [conn5] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "username_1", key: { username: 1 }, unique: 1, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 183ms
+[33mdb_1          |[0m 2016-05-20T11:19:51.409+0000 I INDEX    [conn3] build index on: rocketchat.users properties: { v: 1, unique: true, key: { emails.address: 1 }, name: "emails.address_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.409+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:51.410+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:51.462+0000 I INDEX    [conn6] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.resume.loginTokens.hashedToken: 1 }, name: "services.resume.loginTokens.hashedToken_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.462+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:51.464+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:51.525+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.resume.loginTokens.token: 1 }, name: "services.resume.loginTokens.token_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.525+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:51.526+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:51.587+0000 I INDEX    [conn2] build index on: rocketchat.users properties: { v: 1, key: { services.resume.haveLoginTokensToDelete: 1 }, name: "services.resume.haveLoginTokensToDelete_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.587+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:51.588+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:51.651+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, key: { services.resume.loginTokens.when: 1 }, name: "services.resume.loginTokens.when_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.651+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:51.652+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:51.915+0000 I INDEX    [conn3] build index on: rocketchat.meteor_accounts_loginServiceConfiguration properties: { v: 1, unique: true, key: { service: 1 }, name: "service_1", ns: "rocketchat.meteor_accounts_loginServiceConfiguration" }
+[33mdb_1          |[0m 2016-05-20T11:19:51.915+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:51.917+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:51.917+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "meteor_accounts_loginServiceConfiguration", indexes: [ { name: "service_1", key: { service: 1 }, unique: true } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 261ms
+[33mdb_1          |[0m 2016-05-20T11:19:52.143+0000 I INDEX    [conn6] build index on: rocketchat.meteor_oauth_pendingCredentials properties: { v: 1, unique: true, key: { key: 1 }, name: "key_1", ns: "rocketchat.meteor_oauth_pendingCredentials" }
+[33mdb_1          |[0m 2016-05-20T11:19:52.143+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:52.145+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:52.145+0000 I COMMAND  [conn6] command rocketchat.$cmd command: createIndexes { createIndexes: "meteor_oauth_pendingCredentials", indexes: [ { name: "key_1", key: { key: 1 }, unique: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 219ms
+[33mdb_1          |[0m 2016-05-20T11:19:52.315+0000 I INDEX    [conn4] build index on: rocketchat.meteor_oauth_pendingCredentials properties: { v: 1, key: { credentialSecret: 1 }, name: "credentialSecret_1", ns: "rocketchat.meteor_oauth_pendingCredentials" }
+[33mdb_1          |[0m 2016-05-20T11:19:52.316+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:52.316+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:52.317+0000 I COMMAND  [conn4] command rocketchat.$cmd command: createIndexes { createIndexes: "meteor_oauth_pendingCredentials", indexes: [ { name: "credentialSecret_1", key: { credentialSecret: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 169ms
+[33mdb_1          |[0m 2016-05-20T11:19:52.384+0000 I INDEX    [conn2] build index on: rocketchat.meteor_oauth_pendingCredentials properties: { v: 1, key: { createdAt: 1 }, name: "createdAt_1", ns: "rocketchat.meteor_oauth_pendingCredentials" }
+[33mdb_1          |[0m 2016-05-20T11:19:52.384+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:52.385+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:52.612+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.facebook.id: 1 }, name: "services.facebook.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:52.612+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:52.613+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:52.690+0000 I INDEX    [conn3] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.github.id: 1 }, name: "services.github.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:52.690+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:52.692+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:52.759+0000 I INDEX    [conn6] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.google.id: 1 }, name: "services.google.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:52.759+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:52.760+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:52.821+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.meteor-developer.id: 1 }, name: "services.meteor-developer.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:52.821+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:52.822+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:53.018+0000 I INDEX    [conn2] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.email.verificationTokens.token: 1 }, name: "services.email.verificationTokens.token_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:53.018+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:53.019+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:53.020+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "services.email.verificationTokens.token_1", key: { services.email.verificationTokens.token: 1 }, unique: 1, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 156ms
+[33mdb_1          |[0m 2016-05-20T11:19:53.096+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.password.reset.token: 1 }, name: "services.password.reset.token_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:53.096+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:53.098+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:53.299+0000 I INDEX    [conn3] build index on: rocketchat.meteor_oauth_pendingRequestTokens properties: { v: 1, unique: true, key: { key: 1 }, name: "key_1", ns: "rocketchat.meteor_oauth_pendingRequestTokens" }
+[33mdb_1          |[0m 2016-05-20T11:19:53.300+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:53.301+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:53.301+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "meteor_oauth_pendingRequestTokens", indexes: [ { name: "key_1", key: { key: 1 }, unique: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 198ms
+[33mdb_1          |[0m 2016-05-20T11:19:53.356+0000 I INDEX    [conn6] build index on: rocketchat.meteor_oauth_pendingRequestTokens properties: { v: 1, key: { createdAt: 1 }, name: "createdAt_1", ns: "rocketchat.meteor_oauth_pendingRequestTokens" }
+[33mdb_1          |[0m 2016-05-20T11:19:53.356+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:53.357+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:53.485+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.twitter.id: 1 }, name: "services.twitter.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:53.486+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:53.487+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:53.487+0000 I COMMAND  [conn4] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "services.twitter.id_1", key: { services.twitter.id: 1 }, unique: 1, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 126ms
+[33mdb_1          |[0m 2016-05-20T11:19:53.909+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { rid: 1, ts: 1 }, name: "rid_1_ts_1", ns: "rocketchat.rocketchat_message" }
+[33mdb_1          |[0m 2016-05-20T11:19:53.909+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:53.910+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:53.910+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_message", indexes: [ { name: "rid_1_ts_1", key: { rid: 1, ts: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 211ms
+[33mdb_1          |[0m 2016-05-20T11:19:53.962+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { ts: 1 }, name: "ts_1", ns: "rocketchat.rocketchat_message" }
+[33mdb_1          |[0m 2016-05-20T11:19:53.962+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:53.963+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.049+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { u._id: 1 }, name: "u._id_1", ns: "rocketchat.rocketchat_message" }
+[33mdb_1          |[0m 2016-05-20T11:19:54.050+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.051+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.103+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { editedAt: 1 }, name: "editedAt_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.103+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.104+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.190+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { editedBy._id: 1 }, name: "editedBy._id_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.190+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.191+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.243+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { rid: 1, t: 1, u._id: 1 }, name: "rid_1_t_1_u._id_1", ns: "rocketchat.rocketchat_message" }
+[33mdb_1          |[0m 2016-05-20T11:19:54.243+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.244+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.331+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { expireAt: 1 }, name: "expireAt_1", ns: "rocketchat.rocketchat_message", expireAfterSeconds: 0 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.331+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.332+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.435+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { _fts: "text", _ftsx: 1 }, name: "msg_text", ns: "rocketchat.rocketchat_message", weights: { msg: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.436+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.437+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.437+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_message", indexes: [ { name: "msg_text", key: { msg: "text" } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 103ms
+[33mdb_1          |[0m 2016-05-20T11:19:54.494+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { file._id: 1 }, name: "file._id_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.495+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.495+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.557+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { mentions.username: 1 }, name: "mentions.username_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.557+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.559+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.620+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { pinned: 1 }, name: "pinned_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.620+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.621+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.800+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_room properties: { v: 1, unique: true, key: { name: 1 }, name: "name_1", ns: "rocketchat.rocketchat_room", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.800+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.801+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.802+0000 I COMMAND  [conn5] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_room", indexes: [ { name: "name_1", key: { name: 1 }, unique: 1, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 176ms
+[33mdb_1          |[0m 2016-05-20T11:19:54.869+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_room properties: { v: 1, key: { default: 1 }, name: "default_1", ns: "rocketchat.rocketchat_room" }
+[33mdb_1          |[0m 2016-05-20T11:19:54.869+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.870+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.995+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_room properties: { v: 1, key: { usernames: 1 }, name: "usernames_1", ns: "rocketchat.rocketchat_room" }
+[33mdb_1          |[0m 2016-05-20T11:19:54.995+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:54.996+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:54.997+0000 I COMMAND  [conn6] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_room", indexes: [ { name: "usernames_1", key: { usernames: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 124ms
+[33mdb_1          |[0m 2016-05-20T11:19:55.056+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_room properties: { v: 1, key: { t: 1 }, name: "t_1", ns: "rocketchat.rocketchat_room" }
+[33mdb_1          |[0m 2016-05-20T11:19:55.056+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:55.058+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:55.112+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_room properties: { v: 1, key: { u._id: 1 }, name: "u._id_1", ns: "rocketchat.rocketchat_room" }
+[33mdb_1          |[0m 2016-05-20T11:19:55.113+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:55.113+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:55.519+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_settings properties: { v: 1, key: { blocked: 1 }, name: "blocked_1", ns: "rocketchat.rocketchat_settings", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:55.519+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:55.520+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:55.520+0000 I COMMAND  [conn5] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_settings", indexes: [ { name: "blocked_1", key: { blocked: 1 }, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 404ms
+[33mdb_1          |[0m 2016-05-20T11:19:55.572+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_settings properties: { v: 1, key: { hidden: 1 }, name: "hidden_1", ns: "rocketchat.rocketchat_settings", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:55.573+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:55.573+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:55.737+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_subscription properties: { v: 1, unique: true, key: { rid: 1, u._id: 1 }, name: "rid_1_u._id_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:55.738+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:55.739+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:55.739+0000 I COMMAND  [conn6] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_subscription", indexes: [ { name: "rid_1_u._id_1", key: { rid: 1, u._id: 1 }, unique: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 162ms
+[33mdb_1          |[0m 2016-05-20T11:19:55.909+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { rid: 1, alert: 1, u._id: 1 }, name: "rid_1_alert_1_u._id_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:55.910+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:55.910+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:55.911+0000 I COMMAND  [conn4] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_subscription", indexes: [ { name: "rid_1_alert_1_u._id_1", key: { rid: 1, alert: 1, u._id: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 123ms
+[33mdb_1          |[0m 2016-05-20T11:19:55.962+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { rid: 1, roles: 1 }, name: "rid_1_roles_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:55.962+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:55.963+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.050+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { u._id: 1, name: 1, t: 1 }, name: "u._id_1_name_1_t_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.050+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.051+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.120+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_subscription properties: { v: 1, unique: true, key: { u._id: 1, name: 1, t: 1, code: 1 }, name: "u._id_1_name_1_t_1_code_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.120+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.121+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.206+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { open: 1 }, name: "open_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.206+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.207+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.276+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { alert: 1 }, name: "alert_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.276+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.277+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.419+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { unread: 1 }, name: "unread_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.419+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.421+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.421+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_subscription", indexes: [ { name: "unread_1", key: { unread: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 141ms
+[33mdb_1          |[0m 2016-05-20T11:19:56.478+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { ts: 1 }, name: "ts_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.478+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.479+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.541+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { ls: 1 }, name: "ls_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.541+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.542+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.603+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { desktopNotifications: 1 }, name: "desktopNotifications_1", ns: "rocketchat.rocketchat_subscription", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:56.603+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.604+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.719+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { mobilePushNotifications: 1 }, name: "mobilePushNotifications_1", ns: "rocketchat.rocketchat_subscription", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:56.719+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.720+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:56.720+0000 I COMMAND  [conn4] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_subscription", indexes: [ { name: "mobilePushNotifications_1", key: { mobilePushNotifications: 1 }, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 114ms
+[33mdb_1          |[0m 2016-05-20T11:19:56.775+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { emailNotifications: 1 }, name: "emailNotifications_1", ns: "rocketchat.rocketchat_subscription", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:56.775+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:56.776+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:57.027+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_uploads properties: { v: 1, key: { rid: 1 }, name: "rid_1", ns: "rocketchat.rocketchat_uploads" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.027+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:57.028+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:57.028+0000 I COMMAND  [conn5] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_uploads", indexes: [ { name: "rid_1", key: { rid: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 249ms
+[33mdb_1          |[0m 2016-05-20T11:19:57.081+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_uploads properties: { v: 1, key: { uploadedAt: 1 }, name: "uploadedAt_1", ns: "rocketchat.rocketchat_uploads" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.081+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:57.082+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:57.135+0000 I INDEX    [conn6] build index on: rocketchat.users properties: { v: 1, key: { roles: 1 }, name: "roles_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:57.135+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:57.136+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:57.197+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, key: { name: 1 }, name: "name_1", ns: "rocketchat.users" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.197+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:57.198+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:57.300+0000 I INDEX    [conn2] build index on: rocketchat.users properties: { v: 1, key: { lastLogin: 1 }, name: "lastLogin_1", ns: "rocketchat.users" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.300+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:57.301+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:57.302+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "lastLogin_1", key: { lastLogin: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 101ms
+[33mdb_1          |[0m 2016-05-20T11:19:57.400+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, key: { status: 1 }, name: "status_1", ns: "rocketchat.users" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.400+0000 I INDEX    [conn5] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:57.401+0000 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:57.554+0000 I INDEX    [conn3] build index on: rocketchat.users properties: { v: 1, key: { active: 1 }, name: "active_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:57.554+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:57.555+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:57.555+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "active_1", key: { active: 1 }, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 151ms
+[33mdb_1          |[0m 2016-05-20T11:19:57.651+0000 I INDEX    [conn6] build index on: rocketchat.users properties: { v: 1, key: { statusConnection: 1 }, name: "statusConnection_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:57.651+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:57.652+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:57.706+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, key: { type: 1 }, name: "type_1", ns: "rocketchat.users" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.707+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:57.708+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:59.191+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_roles properties: { v: 1, key: { name: 1 }, name: "name_1", ns: "rocketchat.rocketchat_roles" }
+[33mdb_1          |[0m 2016-05-20T11:19:59.191+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:59.193+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:19:59.194+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_roles", indexes: [ { name: "name_1", key: { name: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 231ms
+[33mdb_1          |[0m 2016-05-20T11:19:59.260+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_roles properties: { v: 1, key: { scope: 1 }, name: "scope_1", ns: "rocketchat.rocketchat_roles" }
+[33mdb_1          |[0m 2016-05-20T11:19:59.260+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:19:59.261+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:20:00.296+0000 I INDEX    [conn3] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.github_enterprise.id: 1 }, name: "services.github_enterprise.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:20:00.297+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:20:00.298+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:20:00.400+0000 I INDEX    [conn2] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.gitlab.id: 1 }, name: "services.gitlab.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:20:00.401+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:20:00.402+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:20:01.104+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_livechat_page_visited properties: { v: 1, key: { token: 1 }, name: "token_1", ns: "rocketchat.rocketchat_livechat_page_visited" }
+[33mdb_1          |[0m 2016-05-20T11:20:01.104+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:20:01.105+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:20:01.105+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_livechat_page_visited", indexes: [ { name: "token_1", key: { token: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 201ms
+[33mdb_1          |[0m 2016-05-20T11:20:01.166+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_livechat_page_visited properties: { v: 1, key: { ts: 1 }, name: "ts_1", ns: "rocketchat.rocketchat_livechat_page_visited" }
+[33mdb_1          |[0m 2016-05-20T11:20:01.167+0000 I INDEX    [conn6] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:20:01.167+0000 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:20:01.222+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_livechat_page_visited properties: { v: 1, key: { expireAt: 1 }, name: "expireAt_1", ns: "rocketchat.rocketchat_livechat_page_visited", sparse: 1, expireAfterSeconds: 0 }
+[33mdb_1          |[0m 2016-05-20T11:20:01.222+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:20:01.223+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:20:02.894+0000 I COMMAND  [conn2] command rocketchat.rocketchat_oauth_apps command: insert { insert: "rocketchat_oauth_apps", writeConcern: { w: 1 }, ordered: true, documents: [ { _id: "zapier", name: "Zapier", active: false, clientId: "zapier", clientSecret: "RTK6TlndaCIolhQhZ7_KHIGOKj41RnlaOq_o-7JKwLr", redirectUri: "https://zapier.com/dashboard/auth/oauth/return/AppIDAPI/", _createdAt: new Date(1463743202790), _createdBy: { _id: "system", username: "system" } } ] } ninserted:1 keyUpdates:0 writeConflicts:0 numYields:0 reslen:40 locks:{ Global: { acquireCount: { r: 2, w: 2 } }, Database: { acquireCount: { w: 1, W: 1 } }, Collection: { acquireCount: { w: 1, W: 1 } } } protocol:op_query 102ms
+[33mdb_1          |[0m 2016-05-20T11:20:03.339+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_statistics properties: { v: 1, key: { createdAt: 1 }, name: "createdAt_1", ns: "rocketchat.rocketchat_statistics" }
+[33mdb_1          |[0m 2016-05-20T11:20:03.339+0000 I INDEX    [conn2] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:20:03.342+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:20:03.342+0000 I WRITE    [conn4] remove rocketchat.meteor_accounts_loginServiceConfiguration query: { service: "github_enterprise_id" } ndeleted:0 keyUpdates:0 writeConflicts:0 numYields:0 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { w: 1 }, acquireWaitCount: { w: 1 }, timeAcquiringMicros: { w: 320382 } }, Collection: { acquireCount: { w: 1 } } } 320ms
+[33mdb_1          |[0m 2016-05-20T11:20:03.342+0000 I COMMAND  [conn4] command rocketchat.$cmd command: delete { delete: "meteor_accounts_loginServiceConfiguration", writeConcern: { w: 1 }, ordered: true, deletes: [ { q: { service: "github_enterprise_id" }, limit: 0 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:40 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { w: 1 }, acquireWaitCount: { w: 1 }, timeAcquiringMicros: { w: 320382 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 320ms
+[33mdb_1          |[0m 2016-05-20T11:20:03.343+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_statistics", indexes: [ { name: "createdAt_1", key: { createdAt: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 322ms
+[33mdb_1          |[0m 2016-05-20T11:20:04.635+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.wordpress.id: 1 }, name: "services.wordpress.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:20:04.635+0000 I INDEX    [conn4] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:20:04.636+0000 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:20:04.947+0000 I INDEX    [conn3] build index on: rocketchat.instances properties: { v: 1, key: { _updatedAt: 1 }, name: "_updatedAt_1", ns: "rocketchat.instances", expireAfterSeconds: 60 }
+[33mdb_1          |[0m 2016-05-20T11:20:04.947+0000 I INDEX    [conn3] 	 building index using bulk method
+[33mdb_1          |[0m 2016-05-20T11:20:04.948+0000 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+[33mdb_1          |[0m 2016-05-20T11:20:04.948+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "instances", indexes: [ { name: "_updatedAt_1", key: { _updatedAt: 1 }, expireAfterSeconds: 60 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 248ms
+----------------
+RocketChat initialisation:
+Attaching to local_rocketchat_1, local_db_1
+[36mrocketchat_1  |[0m Updating process.env.MAIL_URL
+[36mrocketchat_1  |[0m ufs: store created at 
+[33mdb_1          |[0m 2016-05-20T11:19:51.315+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, unique: true, key: { username: 1 }, name: "username_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.317+0000 I COMMAND  [conn5] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "username_1", key: { username: 1 }, unique: 1, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 183ms
+[33mdb_1          |[0m 2016-05-20T11:19:51.409+0000 I INDEX    [conn3] build index on: rocketchat.users properties: { v: 1, unique: true, key: { emails.address: 1 }, name: "emails.address_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.462+0000 I INDEX    [conn6] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.resume.loginTokens.hashedToken: 1 }, name: "services.resume.loginTokens.hashedToken_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.525+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.resume.loginTokens.token: 1 }, name: "services.resume.loginTokens.token_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.587+0000 I INDEX    [conn2] build index on: rocketchat.users properties: { v: 1, key: { services.resume.haveLoginTokensToDelete: 1 }, name: "services.resume.haveLoginTokensToDelete_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.651+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, key: { services.resume.loginTokens.when: 1 }, name: "services.resume.loginTokens.when_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:51.915+0000 I INDEX    [conn3] build index on: rocketchat.meteor_accounts_loginServiceConfiguration properties: { v: 1, unique: true, key: { service: 1 }, name: "service_1", ns: "rocketchat.meteor_accounts_loginServiceConfiguration" }
+[33mdb_1          |[0m 2016-05-20T11:19:51.917+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "meteor_accounts_loginServiceConfiguration", indexes: [ { name: "service_1", key: { service: 1 }, unique: true } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 261ms
+[33mdb_1          |[0m 2016-05-20T11:19:52.143+0000 I INDEX    [conn6] build index on: rocketchat.meteor_oauth_pendingCredentials properties: { v: 1, unique: true, key: { key: 1 }, name: "key_1", ns: "rocketchat.meteor_oauth_pendingCredentials" }
+[33mdb_1          |[0m 2016-05-20T11:19:52.145+0000 I COMMAND  [conn6] command rocketchat.$cmd command: createIndexes { createIndexes: "meteor_oauth_pendingCredentials", indexes: [ { name: "key_1", key: { key: 1 }, unique: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 219ms
+[33mdb_1          |[0m 2016-05-20T11:19:52.315+0000 I INDEX    [conn4] build index on: rocketchat.meteor_oauth_pendingCredentials properties: { v: 1, key: { credentialSecret: 1 }, name: "credentialSecret_1", ns: "rocketchat.meteor_oauth_pendingCredentials" }
+[33mdb_1          |[0m 2016-05-20T11:19:52.317+0000 I COMMAND  [conn4] command rocketchat.$cmd command: createIndexes { createIndexes: "meteor_oauth_pendingCredentials", indexes: [ { name: "credentialSecret_1", key: { credentialSecret: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 169ms
+[33mdb_1          |[0m 2016-05-20T11:19:52.384+0000 I INDEX    [conn2] build index on: rocketchat.meteor_oauth_pendingCredentials properties: { v: 1, key: { createdAt: 1 }, name: "createdAt_1", ns: "rocketchat.meteor_oauth_pendingCredentials" }
+[33mdb_1          |[0m 2016-05-20T11:19:52.612+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.facebook.id: 1 }, name: "services.facebook.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:52.690+0000 I INDEX    [conn3] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.github.id: 1 }, name: "services.github.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:52.759+0000 I INDEX    [conn6] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.google.id: 1 }, name: "services.google.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:52.821+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.meteor-developer.id: 1 }, name: "services.meteor-developer.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:53.018+0000 I INDEX    [conn2] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.email.verificationTokens.token: 1 }, name: "services.email.verificationTokens.token_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:53.020+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "services.email.verificationTokens.token_1", key: { services.email.verificationTokens.token: 1 }, unique: 1, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 156ms
+[33mdb_1          |[0m 2016-05-20T11:19:53.096+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.password.reset.token: 1 }, name: "services.password.reset.token_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:53.299+0000 I INDEX    [conn3] build index on: rocketchat.meteor_oauth_pendingRequestTokens properties: { v: 1, unique: true, key: { key: 1 }, name: "key_1", ns: "rocketchat.meteor_oauth_pendingRequestTokens" }
+[33mdb_1          |[0m 2016-05-20T11:19:53.301+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "meteor_oauth_pendingRequestTokens", indexes: [ { name: "key_1", key: { key: 1 }, unique: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 198ms
+[33mdb_1          |[0m 2016-05-20T11:19:53.356+0000 I INDEX    [conn6] build index on: rocketchat.meteor_oauth_pendingRequestTokens properties: { v: 1, key: { createdAt: 1 }, name: "createdAt_1", ns: "rocketchat.meteor_oauth_pendingRequestTokens" }
+[33mdb_1          |[0m 2016-05-20T11:19:53.485+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.twitter.id: 1 }, name: "services.twitter.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:53.487+0000 I COMMAND  [conn4] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "services.twitter.id_1", key: { services.twitter.id: 1 }, unique: 1, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 126ms
+[33mdb_1          |[0m 2016-05-20T11:19:53.909+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { rid: 1, ts: 1 }, name: "rid_1_ts_1", ns: "rocketchat.rocketchat_message" }
+[33mdb_1          |[0m 2016-05-20T11:19:53.910+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_message", indexes: [ { name: "rid_1_ts_1", key: { rid: 1, ts: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 211ms
+[33mdb_1          |[0m 2016-05-20T11:19:53.962+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { ts: 1 }, name: "ts_1", ns: "rocketchat.rocketchat_message" }
+[33mdb_1          |[0m 2016-05-20T11:19:54.049+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { u._id: 1 }, name: "u._id_1", ns: "rocketchat.rocketchat_message" }
+[33mdb_1          |[0m 2016-05-20T11:19:54.103+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { editedAt: 1 }, name: "editedAt_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.190+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { editedBy._id: 1 }, name: "editedBy._id_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.243+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { rid: 1, t: 1, u._id: 1 }, name: "rid_1_t_1_u._id_1", ns: "rocketchat.rocketchat_message" }
+[33mdb_1          |[0m 2016-05-20T11:19:54.331+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { expireAt: 1 }, name: "expireAt_1", ns: "rocketchat.rocketchat_message", expireAfterSeconds: 0 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.435+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { _fts: "text", _ftsx: 1 }, name: "msg_text", ns: "rocketchat.rocketchat_message", weights: { msg: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.437+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_message", indexes: [ { name: "msg_text", key: { msg: "text" } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 103ms
+[33mdb_1          |[0m 2016-05-20T11:19:54.494+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { file._id: 1 }, name: "file._id_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.557+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { mentions.username: 1 }, name: "mentions.username_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.620+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_message properties: { v: 1, key: { pinned: 1 }, name: "pinned_1", ns: "rocketchat.rocketchat_message", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.800+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_room properties: { v: 1, unique: true, key: { name: 1 }, name: "name_1", ns: "rocketchat.rocketchat_room", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:54.802+0000 I COMMAND  [conn5] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_room", indexes: [ { name: "name_1", key: { name: 1 }, unique: 1, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 176ms
+[33mdb_1          |[0m 2016-05-20T11:19:54.869+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_room properties: { v: 1, key: { default: 1 }, name: "default_1", ns: "rocketchat.rocketchat_room" }
+[33mdb_1          |[0m 2016-05-20T11:19:54.995+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_room properties: { v: 1, key: { usernames: 1 }, name: "usernames_1", ns: "rocketchat.rocketchat_room" }
+[33mdb_1          |[0m 2016-05-20T11:19:54.997+0000 I COMMAND  [conn6] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_room", indexes: [ { name: "usernames_1", key: { usernames: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 124ms
+[33mdb_1          |[0m 2016-05-20T11:19:55.056+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_room properties: { v: 1, key: { t: 1 }, name: "t_1", ns: "rocketchat.rocketchat_room" }
+[33mdb_1          |[0m 2016-05-20T11:19:55.112+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_room properties: { v: 1, key: { u._id: 1 }, name: "u._id_1", ns: "rocketchat.rocketchat_room" }
+[33mdb_1          |[0m 2016-05-20T11:19:55.519+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_settings properties: { v: 1, key: { blocked: 1 }, name: "blocked_1", ns: "rocketchat.rocketchat_settings", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:55.520+0000 I COMMAND  [conn5] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_settings", indexes: [ { name: "blocked_1", key: { blocked: 1 }, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 404ms
+[33mdb_1          |[0m 2016-05-20T11:19:55.572+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_settings properties: { v: 1, key: { hidden: 1 }, name: "hidden_1", ns: "rocketchat.rocketchat_settings", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:55.737+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_subscription properties: { v: 1, unique: true, key: { rid: 1, u._id: 1 }, name: "rid_1_u._id_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:55.739+0000 I COMMAND  [conn6] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_subscription", indexes: [ { name: "rid_1_u._id_1", key: { rid: 1, u._id: 1 }, unique: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 162ms
+[33mdb_1          |[0m 2016-05-20T11:19:55.909+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { rid: 1, alert: 1, u._id: 1 }, name: "rid_1_alert_1_u._id_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:55.911+0000 I COMMAND  [conn4] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_subscription", indexes: [ { name: "rid_1_alert_1_u._id_1", key: { rid: 1, alert: 1, u._id: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 123ms
+[33mdb_1          |[0m 2016-05-20T11:19:55.962+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { rid: 1, roles: 1 }, name: "rid_1_roles_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.050+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { u._id: 1, name: 1, t: 1 }, name: "u._id_1_name_1_t_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.120+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_subscription properties: { v: 1, unique: true, key: { u._id: 1, name: 1, t: 1, code: 1 }, name: "u._id_1_name_1_t_1_code_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.206+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { open: 1 }, name: "open_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.276+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { alert: 1 }, name: "alert_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.419+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { unread: 1 }, name: "unread_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.421+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_subscription", indexes: [ { name: "unread_1", key: { unread: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 141ms
+[33mdb_1          |[0m 2016-05-20T11:19:56.478+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { ts: 1 }, name: "ts_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.541+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { ls: 1 }, name: "ls_1", ns: "rocketchat.rocketchat_subscription" }
+[33mdb_1          |[0m 2016-05-20T11:19:56.603+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { desktopNotifications: 1 }, name: "desktopNotifications_1", ns: "rocketchat.rocketchat_subscription", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:56.719+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { mobilePushNotifications: 1 }, name: "mobilePushNotifications_1", ns: "rocketchat.rocketchat_subscription", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:56.720+0000 I COMMAND  [conn4] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_subscription", indexes: [ { name: "mobilePushNotifications_1", key: { mobilePushNotifications: 1 }, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 114ms
+[33mdb_1          |[0m 2016-05-20T11:19:56.775+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_subscription properties: { v: 1, key: { emailNotifications: 1 }, name: "emailNotifications_1", ns: "rocketchat.rocketchat_subscription", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:57.027+0000 I INDEX    [conn5] build index on: rocketchat.rocketchat_uploads properties: { v: 1, key: { rid: 1 }, name: "rid_1", ns: "rocketchat.rocketchat_uploads" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.028+0000 I COMMAND  [conn5] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_uploads", indexes: [ { name: "rid_1", key: { rid: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 249ms
+[33mdb_1          |[0m 2016-05-20T11:19:57.081+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_uploads properties: { v: 1, key: { uploadedAt: 1 }, name: "uploadedAt_1", ns: "rocketchat.rocketchat_uploads" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.135+0000 I INDEX    [conn6] build index on: rocketchat.users properties: { v: 1, key: { roles: 1 }, name: "roles_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:57.197+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, key: { name: 1 }, name: "name_1", ns: "rocketchat.users" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.300+0000 I INDEX    [conn2] build index on: rocketchat.users properties: { v: 1, key: { lastLogin: 1 }, name: "lastLogin_1", ns: "rocketchat.users" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.302+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "lastLogin_1", key: { lastLogin: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 101ms
+[33mdb_1          |[0m 2016-05-20T11:19:57.400+0000 I INDEX    [conn5] build index on: rocketchat.users properties: { v: 1, key: { status: 1 }, name: "status_1", ns: "rocketchat.users" }
+[33mdb_1          |[0m 2016-05-20T11:19:57.554+0000 I INDEX    [conn3] build index on: rocketchat.users properties: { v: 1, key: { active: 1 }, name: "active_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:57.555+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "active_1", key: { active: 1 }, sparse: 1 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 151ms
+[33mdb_1          |[0m 2016-05-20T11:19:57.651+0000 I INDEX    [conn6] build index on: rocketchat.users properties: { v: 1, key: { statusConnection: 1 }, name: "statusConnection_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:19:57.706+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, key: { type: 1 }, name: "type_1", ns: "rocketchat.users" }
+[33mdb_1          |[0m 2016-05-20T11:19:59.191+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_roles properties: { v: 1, key: { name: 1 }, name: "name_1", ns: "rocketchat.rocketchat_roles" }
+[33mdb_1          |[0m 2016-05-20T11:19:59.194+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_roles", indexes: [ { name: "name_1", key: { name: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 231ms
+[33mdb_1          |[0m 2016-05-20T11:19:59.260+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_roles properties: { v: 1, key: { scope: 1 }, name: "scope_1", ns: "rocketchat.rocketchat_roles" }
+[33mdb_1          |[0m 2016-05-20T11:20:00.296+0000 I INDEX    [conn3] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.github_enterprise.id: 1 }, name: "services.github_enterprise.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:20:00.400+0000 I INDEX    [conn2] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.gitlab.id: 1 }, name: "services.gitlab.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:20:01.104+0000 I INDEX    [conn3] build index on: rocketchat.rocketchat_livechat_page_visited properties: { v: 1, key: { token: 1 }, name: "token_1", ns: "rocketchat.rocketchat_livechat_page_visited" }
+[33mdb_1          |[0m 2016-05-20T11:20:01.105+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_livechat_page_visited", indexes: [ { name: "token_1", key: { token: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 201ms
+[33mdb_1          |[0m 2016-05-20T11:20:01.166+0000 I INDEX    [conn6] build index on: rocketchat.rocketchat_livechat_page_visited properties: { v: 1, key: { ts: 1 }, name: "ts_1", ns: "rocketchat.rocketchat_livechat_page_visited" }
+[33mdb_1          |[0m 2016-05-20T11:20:01.222+0000 I INDEX    [conn4] build index on: rocketchat.rocketchat_livechat_page_visited properties: { v: 1, key: { expireAt: 1 }, name: "expireAt_1", ns: "rocketchat.rocketchat_livechat_page_visited", sparse: 1, expireAfterSeconds: 0 }
+[33mdb_1          |[0m 2016-05-20T11:20:02.894+0000 I COMMAND  [conn2] command rocketchat.rocketchat_oauth_apps command: insert { insert: "rocketchat_oauth_apps", writeConcern: { w: 1 }, ordered: true, documents: [ { _id: "zapier", name: "Zapier", active: false, clientId: "zapier", clientSecret: "RTK6TlndaCIolhQhZ7_KHIGOKj41RnlaOq_o-7JKwLr", redirectUri: "https://zapier.com/dashboard/auth/oauth/return/AppIDAPI/", _createdAt: new Date(1463743202790), _createdBy: { _id: "system", username: "system" } } ] } ninserted:1 keyUpdates:0 writeConflicts:0 numYields:0 reslen:40 locks:{ Global: { acquireCount: { r: 2, w: 2 } }, Database: { acquireCount: { w: 1, W: 1 } }, Collection: { acquireCount: { w: 1, W: 1 } } } protocol:op_query 102ms
+[33mdb_1          |[0m 2016-05-20T11:20:03.339+0000 I INDEX    [conn2] build index on: rocketchat.rocketchat_statistics properties: { v: 1, key: { createdAt: 1 }, name: "createdAt_1", ns: "rocketchat.rocketchat_statistics" }
+[33mdb_1          |[0m 2016-05-20T11:20:03.342+0000 I WRITE    [conn4] remove rocketchat.meteor_accounts_loginServiceConfiguration query: { service: "github_enterprise_id" } ndeleted:0 keyUpdates:0 writeConflicts:0 numYields:0 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { w: 1 }, acquireWaitCount: { w: 1 }, timeAcquiringMicros: { w: 320382 } }, Collection: { acquireCount: { w: 1 } } } 320ms
+[33mdb_1          |[0m 2016-05-20T11:20:03.342+0000 I COMMAND  [conn4] command rocketchat.$cmd command: delete { delete: "meteor_accounts_loginServiceConfiguration", writeConcern: { w: 1 }, ordered: true, deletes: [ { q: { service: "github_enterprise_id" }, limit: 0 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:40 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { w: 1 }, acquireWaitCount: { w: 1 }, timeAcquiringMicros: { w: 320382 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 320ms
+[33mdb_1          |[0m 2016-05-20T11:20:03.343+0000 I COMMAND  [conn2] command rocketchat.$cmd command: createIndexes { createIndexes: "rocketchat_statistics", indexes: [ { name: "createdAt_1", key: { createdAt: 1 } } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 322ms
+[33mdb_1          |[0m 2016-05-20T11:20:04.635+0000 I INDEX    [conn4] build index on: rocketchat.users properties: { v: 1, unique: true, key: { services.wordpress.id: 1 }, name: "services.wordpress.id_1", ns: "rocketchat.users", sparse: 1 }
+[33mdb_1          |[0m 2016-05-20T11:20:04.947+0000 I INDEX    [conn3] build index on: rocketchat.instances properties: { v: 1, key: { _updatedAt: 1 }, name: "_updatedAt_1", ns: "rocketchat.instances", expireAfterSeconds: 60 }
+[33mdb_1          |[0m 2016-05-20T11:20:04.948+0000 I COMMAND  [conn3] command rocketchat.$cmd command: createIndexes { createIndexes: "instances", indexes: [ { name: "_updatedAt_1", key: { _updatedAt: 1 }, expireAfterSeconds: 60 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 248ms
+----------------
+Setting sshd init to defaults on boot
+update-rc.d: warning: default stop runlevel arguments (0 1 6) do not match ssh Default-Stop values (none)
+ Adding system startup for /etc/init.d/ssh ...
+   /etc/rc0.d/K20ssh -> ../init.d/ssh
+   /etc/rc1.d/K20ssh -> ../init.d/ssh
+   /etc/rc6.d/K20ssh -> ../init.d/ssh
+   /etc/rc2.d/S20ssh -> ../init.d/ssh
+   /etc/rc3.d/S20ssh -> ../init.d/ssh
+   /etc/rc4.d/S20ssh -> ../init.d/ssh
+   /etc/rc5.d/S20ssh -> ../init.d/ssh
+----------------
+rocketchat-install.sh completed at: Fri May 20 11:20:06 UTC 2016
+Service accessible via: opexchat.casds.co.uk:3000 or 10.243.50.12:3000
