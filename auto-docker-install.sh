@@ -130,8 +130,8 @@ fi
 cd $INSTALL_DIR
 
 # Pull docker-compose file
-GIT_LAB=http://10.243.54.132/core-infrastructure/infrastructure.iaas/raw/master/docker
-
+#GIT_LAB=http://10.243.54.132/core-infrastructure/infrastructure.iaas/raw/master/docker
+GIT_LAB=https://raw.githubusercontent.com/SuDT/VMextensions/master/docker
 wget $GIT_LAB/compose/$PRODUCT.yml -O docker-compose.yml
 echo "Created docker-compose file: $INSTALL_DIR/docker-compose.yml" >> $LOG
 

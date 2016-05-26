@@ -1,0 +1,7 @@
+logstash:
+  image: logstash
+  ports:
+    - 5000:5000
+  command: logstash -f /config-dir/logstash.conf
+  volumes:
+    - /usr/local/logstash:/config-dir
