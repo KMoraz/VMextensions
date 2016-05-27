@@ -4,7 +4,7 @@ services:
     image: mariadb
     volumes:
       - "./.database:/var/lib/mysql"
-    restart: always
+    #restart: always
     environment:
       MYSQL_ROOT_PASSWORD: wordpress
       MYSQL_DATABASE: wordpress
@@ -21,7 +21,7 @@ services:
       - db:mysql
     ports:
       - "8080:80"
-    restart: always
+    #restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_PASSWORD: wordpress
@@ -32,7 +32,7 @@ services:
       - db:mysql
     ports:
       - 8181:80
-    restart: always
+    #restart: always
     environment:
       MYSQL_USERNAME: root
       MYSQL_ROOT_PASSWORD: wordpress
