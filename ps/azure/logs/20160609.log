@@ -1,0 +1,33 @@
+﻿6	07:30:09.088 GMT	[Informational]	Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+3	07:30:09.655 GMT	[Error] 	Cannot retrieve the dynamic parameters for the cmdlet. Object reference not set to an instance of an object.
+6	07:30:09.659 GMT	[Informational]	Running Test Deployment on Resource: NSGTest
+3	07:32:08.328 GMT	[Error] 	The operation has timed out.
+6	07:32:08.342 GMT	[Informational]	Running Test Deployment on Resource: NSGTest
+3	07:57:39.635 GMT	[Error] 	Exception calling "GetResponse" with "0" argument(s): "The operation has timed out"
+3	08:05:17.267 GMT	[Error] 	Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The operation has timed out"
+6	08:07:44.272 GMT	[Informational]	Started VM-Deploy -resource_Name: NSGTest -Git_Folder: sdlcsimplevm -Test: True
+3	08:09:24.613 GMT	[Error] 	The operation has timed out.
+6	08:12:21.367 GMT	[Informational]	Started VM-Deploy -resource_Name: NSGTest -Git_Folder: sdlcsimplevm -Test: True
+6	08:12:21.380 GMT	[Informational]	Requesting page: http://10.243.54.132/core-infrastructure/infrastructure.iaas.v2/tree/master/vm/sdlcsimplevm
+3	08:14:01.411 GMT	[Error] 	Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The operation has timed out"
+6	08:17:14.759 GMT	[Informational]	Started VM-Deploy -resource_Name: NSGTest -Git_Folder: sdlcsimplevm -Test: False
+6	08:17:14.759 GMT	[Informational]	Requesting page: http://10.243.54.132/core-infrastructure/infrastructure.iaas.v2/tree/master/vm/sdlcsimplevm
+3	08:18:54.793 GMT	[Error] 	Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The operation has timed out"
+6	08:19:47.937 GMT	[Informational]	Started VM-Deploy -resource_Name: NSGTest -Git_Folder: sdlcsimplevm -Test: True
+6	08:19:47.953 GMT	[Informational]	Requesting page: https://almgitlabsvr01.casds.co.uk/core-infrastructure/infrastructure.iaas.v2/tree/master/vm/sdlcsimplevm
+3	08:21:27.952 GMT	[Error] 	Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The operation has timed out"
+6	08:51:42.132 GMT	[Informational]	Started VM-Deploy -resource_Name: NSGTest -Git_Folder: sdlcsimplevm -Test: True
+6	08:51:42.142 GMT	[Informational]	Requesting page: https://almgitlabsvr01.casds.co.uk/core-infrastructure/infrastructure.iaas.v2/tree/master/vm/sdlcsimplevm
+6	09:33:10.200 GST	[Informational]	Started VM-Deploy -resource_Name: NSGTest -Git_Folder: sdlcsimplevm -Test: True
+6	09:33:10.210 GST	[Informational]	Requesting page: https://almgitlabsvr01.casds.co.uk/core-infrastructure/infrastructure.iaas.v2/tree/master/vm/sdlcsimplevm
+3	09:34:50.237 GST	[Error] 	Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The operation has timed out"
+6	15:18:38.099 GST	[Informational]	SDLC is the selected Subscription
+6	15:18:44.985 GST	[Informational]	Changing Azure Subscription to SDLC
+6	15:46:29.822 GST	[Informational]	(::) + SDLC is the selected Subscription
+6	15:46:33.014 GST	[Informational]	(::) + Changing Azure Subscription to SDLC
+6	16:02:02.595 GST	[Informational]	(::) + Using Template: (\\cfsbeckfs01\user$\STekin\My Documents\Repos\infrastructure.iaas.v2\ps\azure\..\..\vm\sdlcsimplevm\vm_sdlc_template.json) with Parameters from: (\\cfsbeckfs01\user$\STekin\My Documents\Repos\infrastructure.iaas.v2\ps\azure\..\..\vm\sdlcsimplevm\vm_sdlc_parameters.json)
+6	16:03:09.800 GST	[Informational]	(Deploy-AzureVMs.ps1::) + Using Template: (\\cfsbeckfs01\user$\STekin\My Documents\Repos\infrastructure.iaas.v2\ps\azure\..\..\vm\sdlcsimplevm\vm_sdlc_template.json) with Parameters from: (\\cfsbeckfs01\user$\STekin\My Documents\Repos\infrastructure.iaas.v2\ps\azure\..\..\vm\sdlcsimplevm\vm_sdlc_parameters.json)
+2	16:52:27.137 GST	[Critical]	Logging into Azure...
+6	16:52:29.211 GST	[Informational]	Using Template: (\\cfsbeckfs01\user$\STekin\My Documents\Repos\infrastructure.iaas.v2\ps\azure\..\..\vm\sdlcsimplevm\vm_sdlc_template.json) with Parameters from: (\\cfsbeckfs01\user$\STekin\My Documents\Repos\infrastructure.iaas.v2\ps\azure\..\..\vm\sdlcsimplevm\vm_sdlc_parameters.json)
+2	16:55:10.293 GST	[Critical]	Logging into Azure...
+6	16:55:10.315 GST	[Informational]	Using Template: (\\cfsbeckfs01\user$\STekin\My Documents\Repos\infrastructure.iaas.v2\ps\azure\..\..\vm\sdlcsimplevm\vm_sdlc_template.json) with Parameters from: (\\cfsbeckfs01\user$\STekin\My Documents\Repos\infrastructure.iaas.v2\ps\azure\..\..\vm\sdlcsimplevm\vm_sdlc_parameters.json)

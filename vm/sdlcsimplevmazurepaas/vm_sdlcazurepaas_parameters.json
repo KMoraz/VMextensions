@@ -1,0 +1,30 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminPassword": {
+      "value": "1Mperat0r"
+    },
+    "sqlserverAdminLoginPassword": {
+      "value": "R£publ!c"
+    },
+    "virtualNetworkName": {
+      "value": "sdlc"
+    },
+    "componenttype": {
+      "value": "app"
+    },
+    "project": {
+      "value": "jra"
+    },
+    "environment": {
+      "value": "poc"
+    },
+    "product": {
+      "value": "jira"
+    },
+    "bu": {
+      "value": "casds"
+    }
+  }
+}

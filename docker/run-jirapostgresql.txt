@@ -1,0 +1,13 @@
+https://github.com/sameersbn/docker-postgresql#installation
+
+docker run --name postgresql -itd --restart always \
+  --env 'PG_PASSWORD=passw0rd' \
+  --env 'PG_TRUST_LOCALNET=true' \
+  --env 'DB_USER=sa_sqlaccount' --env 'DB_PASS=R£publ!c' \
+  --env 'DB_NAME=jrapocjiradatabasecasds' \
+  --publish 5432:5432 \
+  --volume /srv/docker/postgresql:/var/lib/postgresql \
+sameersbn/postgresql:9.4-20
+
+
+jdbc:postgresql://postgres:5432/jiradb

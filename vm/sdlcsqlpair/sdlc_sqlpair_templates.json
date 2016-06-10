@@ -1,0 +1,267 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  
+  "parameters": {
+		"adminPassword": {
+							"type": "securestring",
+							"metadata": {
+												"description": "Password for the Virtual Machine."
+										}
+						 },
+		"virtualNetworkName" : {
+							"type": "string",
+							"metadata": {
+												"description": "The name of the vnet in which this VM will reside."
+										}
+								},
+		"projectenvironment" : {
+							"type": "string",
+							"metadata": {
+												"description": "The project and environment codes for this VM."
+										}
+								},								
+		"product" : {
+							"type": "string",
+							"metadata": {
+												"description": "The foreseen product code for this VM."
+										}
+								},
+		"bu" : {
+							"type": "string",
+							"allowedvalues": [
+												"casss",
+												"casfs",
+												"casds",
+												"casit"
+											 ],
+							"metadata": {
+												"description": "The name of the business unit owning this VM"
+										}
+						},		
+		"subnetName" : {
+							"type": "string",
+							"allowedvalues": [
+												"web",
+												"data",
+												"app"
+											 ],
+							"metadata": {
+												"description": "The name of the subnet to connect to. Allowed values: app, data, web."
+										}
+						},
+		"vmName" : {
+							"type": "string",
+							"metadata": {
+												"description": "The name of the VM to be appended to existing resourcegroup name. i.e. itisysazureXXXX where XXXX is the name of the VM"
+										}
+						},						
+						
+    "windowsOSVersion": {
+      "type": "string",
+      "defaultValue": "2012-R2-Datacenter",
+      "allowedValues": [
+        "2008-R2-SP1",
+        "2012-R2-Datacenter"
+      ],
+      "metadata": {
+        "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version. Allowed values: 2008-R2-SP1, 2012-R2-Datacenter."
+      }
+    }
+  },
+  "variables": {
+    "vmSize": "Standard_D1",
+    "location": "[resourceGroup().location]",
+    "imagePublisher": "MicrosoftWindowsServer",
+    "imageOffer": "WindowsServer",
+    "storageAccountName": "[concat(parameters('projectenvironment'),parameters('product'),'store',parameters('bu'))]",
+    "storageAccountType": "Standard_LRS",
+    "vmStorageAccountContainerName": "vhds",
+    "sizeOfDiskInGB": "100",
+    "dataDisk1VhdName": "concat(resourceGroup().name,parameters('vmName'),'disk',variables('bu'))",
+    "OSDiskName": "[concat(parameters('projectenvironment'),parameters('vmName'),'disk',parameters('bu'))]",
+    "vnetID": "[resourceId('sdlc','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+    "addressPrefix": "172.21.248.0/23",
+    "subnetRef": "[concat(variables('vnetID'),'/subnets/', parameters('subnetName'))]",
+    "subnetPrefix": "172.21.248.128/25",
+    "nicName": "[concat(parameters('projectenvironment'),parameters('vmName'),'net',parameters('bu'))]",
+    "availabilitysetName": "[concat(parameters('projectenvironment'),parameters('product'),'set',parameters('bu'))]",
+    "loadbalancerName": "[concat(parameters('projectenvironment'),parameters('product'),'loadbalancer',parameters('bu'))]",
+    "apiVersion": "2015-06-15"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('storageAccountName')]",
+      "apiVersion": "[variables('apiVersion')]",
+      "location": "[variables('location')]",
+      "properties": {
+        "accountType": "[variables('storageAccountType')]"
+      }
+    },
+    {
+      "apiVersion": "[variables('apiVersion')]",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[variables('nicName')]",
+      "location": "[variables('location')]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              },
+              "loadBalancerBackendAddressPools": [
+                {
+                  "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName')),'/backendAddressPools/loadBalancerBackEnd')]"
+                }
+              ]
+            }
+          }
+        ],
+        "dependsOn": [
+          "[concat('Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]"
+        ]
+      }
+    },
+    {
+      "apiVersion": "[variables('apiVersion')]",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[concat(parameters('projectenvironment'), parameters('vmName'))]",
+      "location": "[variables('location')]",
+      "dependsOn": [
+        "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
+        "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]",
+        "[concat('Microsoft.Compute/availabilitySets/', variables('availabilitysetName'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[variables('vmSize')]"
+        },
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitysetName'))]"
+        },
+        "osProfile": {
+          "computerName": "[concat(parameters('projectenvironment'), parameters('vmName'))]",
+          "adminUsername": "nomen.nescio",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "[variables('imagePublisher')]",
+            "offer": "[variables('imageOffer')]",
+            "sku": "[parameters('windowsOSVersion')]",
+            "version": "latest"
+          },
+          "osDisk": {
+            "name": "osdisk",
+            "vhd": {
+              "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('OSDiskName'),'.vhd')]"
+            },
+            "caching": "ReadWrite",
+            "createOption": "FromImage"
+          },
+          "dataDisks": [
+            {
+              "name": "datadisk1",
+              "diskSizeGB": "[variables('sizeOfDiskInGB')]",
+              "lun": 0,
+              "vhd": {
+                "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('dataDisk1VhdName'),'.vhd')]"
+              },
+              "createOption": "Empty"
+            }
+          ]
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": "true",
+            "storageUri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net')]"
+          }
+        }
+      }
+    },
+	            {
+			      "type": "Microsoft.Network/loadBalancers",
+            "name": "[variables('loadbalancerName')]",
+            "apiVersion": "2015-06-15",
+            "location": "northeurope",
+            "properties": {
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontEnd",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[variables('subnetRef')]"
+                          }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                  {
+                    "name": "loadBalancerBackEnd"
+                  }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "SQLAlwaysOnEndPointListener",
+                        "properties": {
+                          "frontendIPConfiguration": {
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName')), '/frontendIpConfigurations/loadBalancerFrontEnd')]"
+                          },
+                            "frontendPort": 1433,
+                            "backendPort": 1433,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp",
+                            "loadDistribution": "Default",
+                          "backendAddressPool": {
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName')), '/backendAddressPools/loadBalancerBackEnd')]"
+                          },
+                          "probe": {
+                            "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName')), '/probes/SQLAlwaysOnEndPointProbe')]"
+                          }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "SQLAlwaysOnEndPointProbe",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "port": 59999,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    }
+                ],
+                "inboundNatRules": [],
+                "outboundNatRules": [],
+                "inboundNatPools": []
+            },
+            "dependsOn": []
+        },
+        {
+            "type": "Microsoft.Compute/availabilitySets",
+            "name": "[variables('availabilitysetName')]",
+            "apiVersion": "2015-06-15",
+            "location": "northeurope",
+            "tags": {},
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 3
+            },
+            "dependsOn": []
+        },
+  ]
+}

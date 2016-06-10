@@ -15,8 +15,11 @@ services:
     depends_on:
       - db
     image: wordpress:latest
+    #working_dir: /var/www/html
     volumes:
       - ~/wordpress/wp_html:/var/www/html
+      - ~/wordpress/wp_html/wp-content:/var/www/html/wp-content:rw
+      #- uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     links:
       - db:mysql
     ports:

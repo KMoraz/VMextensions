@@ -3,8 +3,12 @@ set -e
 #===========================================================#
 # Azure auto install via VMextensions
 #===========================================================#
-# Params sent from az_vm.deploy.ps1
+# Params "PRODUCT" sent from azure.vm.deploy.ps1
 PRODUCT="${1}"
+
+# Ensure correct date/time is set on VM
+echo "Europe/London" | tee /etc/timezone
+dpkg-reconfigure -f noninteractive tzdata
 
 # Create Variables
 #IP=`hostname -I`
@@ -47,15 +51,12 @@ echo -e "$SEPERATOR" >> $LOG
 echo "Hostname = `hostname`" >> $LOG
 echo "IP on eth0 = $IP" >> $LOG
 echo -e "$SEPERATOR" >> $LOG
-echo "Running system updates..." >> $LOG
-apt-get -y update
-echo "Update completed: `/bin/date`" >> $LOG
-echo -e "$SEPERATOR" >> $LOG
 
 #==============================
 # DRIVE PROVISION FOR SDC (1TB)
 #==============================
 TGT_DEV=/dev/sdc
+# If additional drive exists then format (kernal usually attaches to sdc)
 if [ -e $TGT_DEV ]; then
 	echo -e "Provisioning Data Drive: $TGT_DEV" >> $LOG
 	#wget -qO- http://10.243.54.132/core-infrastructure/infrastructure.iaas/raw/master/docker/drive.provision.sh | sh
@@ -94,14 +95,14 @@ hash wget 2>/dev/null || { echo "Installing wget..." >> $LOG; apt-get install -y
 hash curl 2>/dev/null || { echo "Installing cURL..." >> $LOG; apt-get install -y curl; }
 
 # Get the latest docker package if not installed.
-hash docker 2>/dev/null || { echo "Installing docker..." >> $LOG; wget -qO- https://get.docker.com/ | sh; } 
+hash docker 2>/dev/null || { echo "Installing docker..." >> $LOG; wget -qO- https://get.docker.com/ | sh; }
 echo "`docker --version`" >> $LOG
 
 #===========================
 # DOCKER-COMPOSE
 #===========================
-# Download Latest Docker Compose from GutHub: https://github.com/docker/compose/releases
-COMPOSE_VER="1.7.1"
+# Check Latest Docker Compose version at GitHub: https://github.com/docker/compose/releases
+COMPOSE_VER="1.7.1" # Change version number here
 COMPOSE_URL="https://github.com/docker/compose/releases/download/${COMPOSE_VER}/docker-compose-Linux-x86_64"
 COMPOSE_DIR=/usr/local/bin/docker-compose
 
@@ -130,17 +131,22 @@ fi
 cd $INSTALL_DIR
 
 # Pull docker-compose file
-#GIT_LAB=http://10.243.54.132/core-infrastructure/infrastructure.iaas/raw/master/docker
+#GIT_LAB=http://10.243.54.132/core-infrastructure/infrastructure.iaas/raw/master/docker #not yet accessible externally
 GIT_LAB=https://raw.githubusercontent.com/SuDT/VMextensions/master/docker
 wget $GIT_LAB/compose/$PRODUCT.yml -O docker-compose.yml
 echo "Created docker-compose file: $INSTALL_DIR/docker-compose.yml" >> $LOG
 
+#===========================
+# PRODUCT DEFINITIONS
+#===========================
 if [ $PRODUCT == "logstash" ]; then
    wget $GIT_LAB/config/logstash.conf -O logstash.conf
    echo "Logstash config file added: $INSTALL_DIR/logstash.conf" >> $LOG
 fi
 
-# Start docker-compose and pull latest images
+#===========================
+# BEGIN DOCKER PULL/COMPOSE
+#===========================
 echo -e "$SEPERATOR" >> $LOG
 echo "Initial docker-compose started at: `/bin/date`" >> $LOG
 docker-compose up -d >> $LOG 2>&1
@@ -165,11 +171,7 @@ echo -e "Created initialisation script: /etc/init/${PRODUCT}.conf" >> $LOG
 echo -e "$SEPERATOR" >> $LOG
 echo -e "Initialisation Log:" >> $LOG
 docker-compose logs | grep '${PRODUCT}' >> $LOG
-# ensure SSH is accessible at startup
 echo -e "$SEPERATOR" >> $LOG
-#echo -e "Setting sshd init to defaults on boot" >> $LOG
-#update-rc.d ssh defaults >> $LOG 2>&1
-#echo -e "$SEPERATOR" >> $LOG
 #echo -e "$PRODUCT Service accessible via: ${IP}:8080" >> $LOG
 echo -e "auto-docker-install.sh completed at: `/bin/date` - system rebooting..." >> $LOG
 #reboot

@@ -6,7 +6,7 @@ elasticsearch:
   environment:
     - ES_HEAP_SIZE=1g
   volumes:
-    - /usr/local/dc_elk/config:/usr/share/elasticsearch/config
+    - /usr/local/dc_elk-kibana/config:/usr/share/elasticsearch/config
   cap_add:
     - IPC_LOCK
   ulimits:

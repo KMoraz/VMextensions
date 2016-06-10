@@ -1,0 +1,43 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworkName": {
+      "value": "production"
+    },
+    "subnetName": {
+      "value": "appgateway"
+    },
+    "applicationGatewayName": {
+      "value": "pegaappgateway"
+    },
+    "applicationGatewaySize": {
+      "value": "Standard_Small"
+    },
+    "applicationGatewayInstanceCount": {
+      "value": 2
+    },
+    "frontendPort": {
+      "value": 8080
+    },
+    "backendPort": {
+      "value": 8080
+    },
+    "backendIPAddresses": {
+      "value": [
+        {
+          "IpAddress": "10.243.50.14"
+        },
+        {
+          "IpAddress": "10.243.50.15"
+        }
+      ]
+    },
+    "cookieBasedAffinity": {
+      "value": "Enabled"
+    },
+    "privateipaddress": {
+      "value": "10.243.55.229"
+    }
+  }
+}

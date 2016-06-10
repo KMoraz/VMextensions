@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<AZConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- Specify your CASDS Azure credentials here (password should be secured PS string - see SecurePassword.ps1) -->
+  <AD user="admin_stekin@casds.co.uk" spassword="01000000d08c9ddf0115d1118c7a00c04fc297eb010000004a9bf017138d4845a68d6a253c0fa6cf0000000002000000000003660000c0000000100000007b77036a596fc3c95449c89909da42dc0000000004800000a00000001000000066fff751f5cd3d71c9612a40c9e4b6a11800000038d2218a428adb3947fd9fd279aa42399280bd26ed5379aa1400000026de813ce9e55aa00eacb060a1186369fc85811e" />
+  <AZ env="AzureCloud" tenant="31c7909e-205d-45fa-996e-6474cc2e8e3f" region="North Europe" />
+  <SDLC subscription="5c9d7941-2cda-48c8-b7bd-20865cfbebca" name="SDLC" />
+  <UAT subscription="5fdf6843-83ec-4d37-b91c-b039ae11d076" name="UAT" />
+  <PreProd subscription="16ea32e2-5706-4d56-952a-a6a2c96eca47" name="PreProd" />
+  <Prod subscription="1a020dad-9557-4c31-942e-585cc7387422" name="Production" />
+</AZConfig>

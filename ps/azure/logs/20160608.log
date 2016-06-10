@@ -1,0 +1,135 @@
+﻿6	10:39:42.763 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Will Use Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+0	10:58:33.902 GMT	[Emergency]	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevm, please check if it exists
+0	10:58:36.845 GMT	[Emergency]	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevm, please check if it exists
+3	10:59:37.020 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevm, please check if it exists
+3	11:01:07.787 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevm, please check if it exists
+6	11:33:24.858 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:33:25.105 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: SDLC
+1	11:33:25.119 GMT	[Alert] 	(Capita.Powershell.CASDS.psm1::)Test Deployment Failed: Cannot retrieve the dynamic parameters for the cmdlet. Run Login-AzureRmAccount to login.
+6	11:34:23.587 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:34:23.654 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: SDLC
+1	11:34:23.668 GMT	[Alert] 	(Capita.Powershell.CASDS.psm1::)Test Deployment Failed: Cannot retrieve the dynamic parameters for the cmdlet. Run Login-AzureRmAccount to login.
+6	11:34:36.375 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:34:36.648 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: SDLC
+1	11:34:36.665 GMT	[Alert] 	(Capita.Powershell.CASDS.psm1::)Test Deployment Failed: Cannot retrieve the dynamic parameters for the cmdlet. Run Login-AzureRmAccount to login.
+6	11:36:57.707 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:36:57.982 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+1	11:36:57.994 GMT	[Alert] 	(Capita.Powershell.CASDS.psm1::)Test Deployment Failed: Cannot retrieve the dynamic parameters for the cmdlet. Run Login-AzureRmAccount to login.
+6	11:39:00.777 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:39:01.066 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+1	11:39:02.078 GMT	[Alert] 	(Capita.Powershell.CASDS.psm1::)Test Deployment Failed: Cannot retrieve the dynamic parameters for the cmdlet. Run Login-AzureRmAccount to login.
+6	11:40:24.127 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:40:24.394 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+1	11:40:25.680 GMT	[Alert] 	(Capita.Powershell.CASDS.psm1::)Test Deployment Failed: Cannot retrieve the dynamic parameters for the cmdlet. Run Login-AzureRmAccount to login.
+6	11:44:38.136 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:44:38.387 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+1	11:44:39.813 GMT	[Alert] 	(Capita.Powershell.CASDS.psm1::)Test Deployment Failed: Cannot retrieve the dynamic parameters for the cmdlet. Run Login-AzureRmAccount to login.
+6	11:45:48.459 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:45:48.775 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+1	11:45:50.226 GMT	[Alert] 	(Capita.Powershell.CASDS.psm1::)Test Deployment Failed: Cannot retrieve the dynamic parameters for the cmdlet. Run Login-AzureRmAccount to login.
+6	11:46:46.340 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:46:46.408 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+1	11:46:48.230 GMT	[Alert] 	(Capita.Powershell.CASDS.psm1::)Test Deployment Failed: Run Login-AzureRmAccount to login.
+6	11:48:44.743 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	11:48:44.984 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	12:01:47.742 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: () with Parameters from: (vm_sdlc_parameters.json)
+3	12:01:48.018 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevm, please check if it exists
+6	12:03:44.322 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: () with Parameters from: (vm_sdlc_parameters.json)
+3	12:03:44.585 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevm, please check if it exists
+6	12:05:48.313 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: () with Parameters from: (vm_sdlc_parameters.json)
+6	12:06:26.050 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: () with Parameters from: (vm_sdlc_parameters.json)
+6	12:07:15.453 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: () with Parameters from: (vm_sdlc_parameters.json)
+6	12:07:44.481 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: () with Parameters from: (vm_sdlc_parameters.json)
+6	12:09:03.339 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	12:09:03.713 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	12:10:51.927 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	12:10:52.255 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:18:04.154 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	13:18:04.504 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:18:59.856 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	13:18:59.971 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:19:36.182 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	13:19:36.473 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:33:38.087 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	13:33:38.384 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:33:48.888 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	13:33:49.002 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:34:20.335 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	13:34:20.446 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:37:32.861 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	13:37:33.140 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:41:40.698 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	13:41:41.007 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:42:16.559 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+6	13:42:16.679 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:47:01.902 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+3	13:47:04.822 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevm, please check if it exists
+6	13:47:04.837 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:49:37.885 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)SDLC is the selected Subscription
+6	13:49:40.188 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+3	13:49:41.840 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevmRun Login-AzureRmAccount to login.
+6	13:49:41.852 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:50:11.508 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)SDLC is the selected Subscription
+6	13:50:13.706 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+3	13:50:13.832 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevmCannot bind parameter 'Credential'. Cannot convert the "System.Management.Automation.PSCredential#" value of type "System.String" to type "System.Management.Automation.PSCredential".
+6	13:50:13.848 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:50:27.600 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)SDLC is the selected Subscription
+6	13:50:29.730 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+3	13:50:33.515 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevmRun Login-AzureRmAccount to login.
+6	13:50:33.528 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	13:52:33.919 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Using Template: (vm_sdlc_template.json) with Parameters from: (vm_sdlc_parameters.json)
+3	13:52:34.357 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't find Git folder: sdlcsimplevmCannot retrieve the dynamic parameters for the cmdlet. Cannot process argument because the value of argument "validValues" is out of range. Change argument "validValues" to  a value that is within range.
+Parameter name: validValues
+Actual value was System.String[].
+6	13:52:34.370 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	15:17:52.045 GMT	[Informational]	(Change-Subscription::)Changing Azure Subscription to SDLC
+6	15:19:33.701 GMT	[Informational]	(Change-Subscription::)Changing Azure Subscription to SDLC
+6	15:21:42.436 GMT	[Informational]	(Change-Subscription::)Changing Azure Subscription to SDLC
+3	15:27:49.491 GMT	[Error] 	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab - Site may be down!
+6	15:27:49.538 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+6	15:31:06.282 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:31:06.298 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:34:37.238 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The remote server returned an error: (504) Gateway Timeout."
+4	15:34:37.254 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:34:37.270 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:35:58.537 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel."
+4	15:35:58.537 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:35:58.553 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:36:58.424 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The remote server returned an error: (504) Gateway Timeout."
+4	15:36:58.439 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:36:58.455 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:37:55.974 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel."
+4	15:37:55.990 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:37:56.021 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:38:04.452 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel."
+4	15:38:04.484 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:38:04.499 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:39:01.043 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel."
+4	15:39:01.059 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:39:01.074 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:39:37.349 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The remote server returned an error: (504) Gateway Timeout."
+4	15:39:37.364 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:39:37.380 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:40:13.546 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:40:13.561 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:42:02.065 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:42:02.081 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:42:08.661 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:42:08.677 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:42:37.962 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:42:37.978 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:51:48.129 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: Exception calling "GetResponse" with "0" argument(s): "The remote server returned an error: (504) Gateway Timeout."
+4	15:51:48.145 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:51:48.160 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:53:35.086 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:53:35.117 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:54:30.373 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 
+6	15:54:30.373 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:55:28.744 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: System.Net.HttpWebRequest
+6	15:55:28.744 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:55:50.922 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 0
+6	15:55:50.938 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:55:53.220 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 0
+6	15:55:53.236 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest
+4	15:55:53.806 GMT	[Warning]	(Capita.Powershell.CASDS.psm1::)Can't connect to GitLab: 0
+6	15:55:53.807 GMT	[Informational]	(Capita.Powershell.CASDS.psm1::)Running Test Deployment on Resource: NSGTest

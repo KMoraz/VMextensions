@@ -1,0 +1,604 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+	  "subnetref": {
+      "type": "string",
+      "metadata": {
+        "description": "subnet CIDR notation"
+                  }
+                },
+	  "subnetname": {
+      "type": "string",
+      "metadata": {
+        "description": "subnet name"
+      }
+    }
+  },
+  "resources": [
+      {
+        "apiVersion": "2015-06-15",
+        "location": "[resourceGroup().location]",
+        "name": "[variables('nsgname')]",
+        "properties": {
+          "securityRules": [
+            {
+              "Name": "Azure-AzSQL",
+              "properties": {
+                "access": "Allow",
+                "destinationAddressPrefix": "INTERNET",
+                "destinationPortRange": "1433",
+                "direction": "Outbound",
+                "priority": 382,
+                "protocol": "Tcp",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "*"
+              }
+            },
+            {
+              "Name": "Azure-AzSQLb",
+              "properties": {
+                "priority": 384,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "INTERNET",
+                "destinationPortRange": "11000-11999",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Azure-AzSQLc",
+              "properties": {
+                "priority": 385,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "INTERNET",
+                "destinationPortRange": "14000-14999",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "ILBProbe_IntNets",
+              "properties": {
+                "priority": 180,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "AZURE_LOADBALANCER",
+                "destinationPortRange": "*",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "Azure-SBUS",
+              "properties": {
+                "priority": 380,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "INTERNET",
+                "destinationPortRange": "9350-9354",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Azure-SBUSb",
+              "properties": {
+                "priority": 381,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "INTERNET",
+                "destinationPortRange": "5671",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "InboundDrop",
+              "properties": {
+                "priority": 2000,
+                "access": "Deny",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "*",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "Int-CapitaProxy-Http",
+              "properties": {
+                "priority": 301,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "8080",
+                "destinationAddressPrefix": "10.87.10.241",
+                "destinationPortRange": "*",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-CapitaProxy-Https",
+              "properties": {
+                "priority": 302,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "443",
+                "destinationAddressPrefix": "10.87.10.241",
+                "destinationPortRange": "*",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-Uptime-in",
+              "properties": {
+                "priority": 170,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.87.11.47",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "9998",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "Int-Uptime-out",
+              "properties": {
+                "priority": 316,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "9996",
+                "destinationAddressPrefix": "10.87.11.47",
+                "destinationPortRange": "*",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-IDAM-DNS",
+              "properties": {
+                "priority": 375,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "53",
+                "destinationAddressPrefix": "10.243.50.8",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-IDAM-Dyn",
+              "properties": {
+                "priority": 376,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "49152-65535",
+                "destinationAddressPrefix": "10.243.50.8",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-IDAM-GlobCat",
+              "properties": {
+                "priority": 374,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "3268-3269",
+                "destinationAddressPrefix": "10.243.50.8",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-IDAM-Ker",
+              "properties": {
+                "priority": 370,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "88",
+                "destinationAddressPrefix": "10.243.50.8",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-IDAM-KerPass",
+              "properties": {
+                "priority": 373,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "464",
+                "destinationAddressPrefix": "10.243.50.8",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-IDAM-LDAP",
+              "properties": {
+                "priority": 371,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "389",
+                "destinationAddressPrefix": "10.243.50.8",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-IDAM-SMB",
+              "properties": {
+                "priority": 372,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "445",
+                "destinationAddressPrefix": "10.243.50.8",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-IDAM-time",
+              "properties": {
+                "priority": 378,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "123",
+                "destinationAddressPrefix": "10.243.50.8",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "IntCapita-HTTPS",
+              "properties": {
+                "priority": 133,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.0.0.0/8",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "443",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-LinDyn",
+              "properties": {
+                "priority": 164,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.0.0.0/8",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "9200-9300",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-NBName",
+              "properties": {
+                "priority": 100,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.0.0.0/8",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "137-139",
+                "protocol": "*",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-RDP",
+              "properties": {
+                "priority": 120,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.0.0.0/8",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "3389",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-RPCRep",
+              "properties": {
+                "priority": 156,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.0.0.0/8",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "135",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-SMB_CIFS",
+              "properties": {
+                "priority": 110,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.0.0.0/8",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "445",
+                "protocol": "*",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-SNMP",
+              "properties": {
+                "priority": 124,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.0.0.0/8",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "161",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-SSH",
+              "properties": {
+                "priority": 123,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.0.0.0/8",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "22",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-McAfee-IntNets1",
+              "properties": {
+                "priority": 195,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.251.15.10",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "8081",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-McAfee-IntNets1-out",
+              "properties": {
+                "priority": 396,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "8081",
+                "destinationAddressPrefix": "10.251.15.10",
+                "destinationPortRange": "*",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "IntCapita-McAfee-IntNets2",
+              "properties": {
+                "priority": 196,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.251.15.10",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "8082",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-McAfee-IntNets2-out",
+              "properties": {
+                "priority": 397,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "8082",
+                "destinationAddressPrefix": "10.251.15.10",
+                "destinationPortRange": "*",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "IntCapita-McAfee-IntNets3",
+              "properties": {
+                "priority": 197,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.251.15.10",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "445",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-McAfee-IntNets3-out",
+              "properties": {
+                "priority": 398,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "445",
+                "destinationAddressPrefix": "10.251.15.10",
+                "destinationPortRange": "*",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "IntCapita-McAfee-IntNets4",
+              "properties": {
+                "priority": 198,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.251.15.10",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "53",
+                "protocol": "*",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "IntCapita-McAfee-IntNets5",
+              "properties": {
+                "priority": 199,
+                "access": "Allow",
+                "sourceAddressPrefix": "10.251.15.10",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "389",
+                "protocol": "Tcp",
+                "direction": "Inbound"
+              }
+            },
+            {
+              "Name": "Outbound-Drop",
+              "properties": {
+                "priority": 4000,
+                "access": "Deny",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "*",
+                "protocol": "Tcp",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-drIDAM-DNS",
+              "properties": {
+                "priority": 405,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "53",
+                "destinationAddressPrefix": "10.243.58.4",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-drIDAM-Dyn",
+              "properties": {
+                "priority": 406,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "49152-65535",
+                "destinationAddressPrefix": "10.243.58.4",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-drIDAM-GlobCat",
+              "properties": {
+                "priority": 404,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "3268-3269",
+                "destinationAddressPrefix": "10.243.58.4",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-drIDAM-Ker",
+              "properties": {
+                "priority": 400,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "88",
+                "destinationAddressPrefix": "10.243.58.4",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-drIDAM-KerPass",
+              "properties": {
+                "priority": 403,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "464",
+                "destinationAddressPrefix": "10.243.58.4",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-drIDAM-LDAP",
+              "properties": {
+                "priority": 401,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "389",
+                "destinationAddressPrefix": "10.243.58.4",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-drIDAM-SMB",
+              "properties": {
+                "priority": 402,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "445",
+                "destinationAddressPrefix": "10.243.58.4",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            },
+            {
+              "Name": "Int-drIDAM-time",
+              "properties": {
+                "priority": 408,
+                "access": "Allow",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "123",
+                "destinationAddressPrefix": "10.243.58.4",
+                "destinationPortRange": "*",
+                "protocol": "*",
+                "direction": "Outbound"
+              }
+            }
+          ]
+            },
+        "type": "Microsoft.Network/networkSecurityGroups"
+      }
+  ],
+
+  "variables": { "nsgname": "[concat(resourcegroup().name,parameters('subnetname'),'nsgcasds')]" }
+}

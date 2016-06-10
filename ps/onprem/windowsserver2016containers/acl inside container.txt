@@ -1,0 +1,9 @@
+    $acl = Get-Acl data
+    $identity = BUILTIN\IIS_IUSRS"
+    $fileSystemRights = "Write"
+    $inheritanceFlags = "ContainerInherit, ObjectInherit"
+    $propagationFlags = "None"
+    $accessControlType = "Allow"
+    $rule = New-Object System.Security.AccessControl.FileSystemAccessRule($identity, $fileSystemRights, $inheritanceFlags, $propagationFlags, $accessControlType)
+    $acl.SetAccessRule($rule)
+    Set-Acl $logFolder $acl

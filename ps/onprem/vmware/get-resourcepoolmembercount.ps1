@@ -1,0 +1,1 @@
+Get-ResourcePool | Where {$_.Name -ne “Resources“ }| Select Name, @{N=“NumVM“;E={($_ | Get-VM).Count}} | Sort Name

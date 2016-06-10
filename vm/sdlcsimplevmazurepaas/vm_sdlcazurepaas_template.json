@@ -1,0 +1,285 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+
+  "parameters": {
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the Virtual Machine."
+      }
+    },
+    "virtualNetworkName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the vnet in which this VM will reside."
+      }
+    },
+    "project": {
+      "type": "string",
+      "metadata": {
+        "description": "The project and environment codes for this VM."
+      }
+    },
+    "environment": {
+      "type": "string",
+      "metadata": {
+        "description": "The project and environment codes for this VM."
+      }
+    },
+    "product": {
+      "type": "string",
+      "metadata": {
+        "description": "The foreseen product code for this VM."
+      }
+    },
+    "bu": {
+      "type": "string",
+      "allowedvalues": [
+        "casss",
+        "casfs",
+        "casds",
+        "casit"
+      ],
+      "metadata": {
+        "description": "The name of the business unit owning this VM"
+      }
+    },
+    "componenttype": {
+      "type": "string",
+      "allowedvalues": [
+        "web",
+        "data",
+        "app"
+      ],
+      "metadata": {
+        "description": "The name of the subnet to connect to. Allowed values: app, data, web."
+      }
+    },
+    "windowsOSVersion": {
+      "type": "string",
+      "defaultValue": "2012-R2-Datacenter",
+      "allowedValues": [
+        "2008-R2-SP1",
+        "2012-R2-Datacenter"
+      ],
+      "metadata": {
+        "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version. Allowed values: 2008-R2-SP1, 2012-R2-Datacenter."
+      }
+    },
+    "sqlserverAdminLogin": {
+      "type": "string",
+      "defaultValue": "sa_sqlaccount",
+      "minLength": 1
+    },
+    "sqlserverAdminLoginPassword": {
+      "type": "securestring"
+    },
+    "sqldatabaseCollation": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "sqldatabaseEdition": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
+    },
+    "sqldatabaseRequestedServiceObjectiveName": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "S0",
+        "S1",
+        "S2",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "metadata": {
+        "description": "Describes the performance level for Edition"
+      }
+    }
+  },
+  "variables": {
+    "vmname": "[concat(parameters('componenttype'),'svr01')]",
+    "projectenvironment": "[concat(parameters('project'),parameters('environment'))]",
+    "sqldatabasename": "[concat(variables('projectenvironment'),parameters('product'),'database',parameters('bu'))]",
+    "vmSize": "Standard_D1",
+    "location": "[resourceGroup().location]",
+    "imagePublisher": "MicrosoftWindowsServer",
+    "imageOffer": "WindowsServer",
+    "storageAccountName": "[concat(variables('projectenvironment'),parameters('product'),'store',parameters('bu'))]",
+    "storageAccountType": "Standard_LRS",
+    "vmStorageAccountContainerName": "vhds",
+    "sizeOfDiskInGB": "100",
+    "dataDisk1VhdName": "concat(resourceGroup().name,variables('vmName'),'disk',variables('bu'))",
+    "OSDiskName": "[concat(variables('projectenvironment'),variables('vmName'),'disk',parameters('bu'))]",
+    "vnetID": "[resourceId('sdlc','Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+    "addressPrefix": "172.21.248.0/23",
+    "subnetRef": "[concat(variables('vnetID'),'/subnets/', parameters('componenttype'))]",
+    "subnetPrefix": "172.21.248.128/25",
+    "nicName": "[concat(variables('projectenvironment'),variables('vmName'),'net',parameters('bu'))]",
+
+    "apiVersion": "2015-06-15",
+    "sqlserverName": "[concat(variables('projectenvironment'),parameters('product'),'databasesvr',parameters('bu'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('storageAccountName')]",
+      "apiVersion": "[variables('apiVersion')]",
+      "location": "[variables('location')]",
+      "tags": {
+        "projectcode": "[parameters('project')]",
+        "product": "[parameters('product')]"
+              },
+      "properties": {
+        "accountType": "[variables('storageAccountType')]"
+      }
+    },
+    {
+      "apiVersion": "[variables('apiVersion')]",
+      "type": "Microsoft.Network/networkInterfaces",
+      "name": "[variables('nicName')]",
+      "location": "[variables('location')]",
+      "tags": {
+        "projectcode": "[parameters('project')]",
+        "product": "[parameters('product')]"
+      },
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[variables('subnetRef')]"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "[variables('apiVersion')]",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[concat(variables('projectenvironment'), variables('vmName'))]",
+      "location": "[variables('location')]",
+      "tags": {
+        "projectcode": "[parameters('project')]",
+        "product": "[parameters('product')]"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
+        "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[variables('vmSize')]"
+        },
+        "osProfile": {
+          "computerName": "[concat(variables('projectenvironment'), variables('vmName'))]",
+          "adminUsername": "nomen.nescio",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "[variables('imagePublisher')]",
+            "offer": "[variables('imageOffer')]",
+            "sku": "[parameters('windowsOSVersion')]",
+            "version": "latest"
+          },
+          "osDisk": {
+            "name": "osdisk",
+            "vhd": {
+              "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('OSDiskName'),'.vhd')]"
+            },
+            "caching": "ReadWrite",
+            "createOption": "FromImage"
+          },
+          "dataDisks": [
+            {
+              "name": "datadisk1",
+              "diskSizeGB": "[variables('sizeOfDiskInGB')]",
+              "lun": 0,
+              "vhd": {
+                "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('dataDisk1VhdName'),'.vhd')]"
+              },
+              "createOption": "Empty"
+            }
+          ]
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": "true",
+            "storageUri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net')]"
+          }
+        }
+      }
+    },
+    {
+      "name": "[variables('sqlserverName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "projectcode": "[parameters('project')]",
+        "product": "[parameters('product')]"
+      },
+      "apiVersion": "2014-04-01-preview",
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "sqlserver"
+      },
+      "properties": {
+        "administratorLogin": "[parameters('sqlserverAdminLogin')]",
+        "administratorLoginPassword": "[parameters('sqlserverAdminLoginPassword')]"
+      },
+      "resources": [
+        {
+          "name": "AllowAllWindowsAzureIps",
+          "type": "firewallrules",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('sqlserverName'))]"
+          ],
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0"
+          }
+        },
+        {
+          "name": "[variables('sqldatabaseName')]",
+          "type": "databases",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[variables('sqlserverName')]"
+          ],
+          "tags": {
+            "displayName": "sqldatabase"
+          },
+          "properties": {
+            "collation": "[parameters('sqldatabaseCollation')]",
+            "edition": "[parameters('sqldatabaseEdition')]",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "[parameters('sqldatabaseRequestedServiceObjectiveName')]"
+          }
+        }
+      ]
+    }
+  ]
+}

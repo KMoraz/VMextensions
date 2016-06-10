@@ -1,0 +1,33 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "North Europe"
+    },
+    "subnet1Name": {
+      "value": "app"
+    },
+    "subnet1Prefix": {
+      "value": "172.21.248.128/25"
+    },
+    "subnet2Name": {
+      "value": "web"
+    },
+    "subnet2Prefix": {
+      "value": "172.21.248.0/25"
+    },
+    "subnet3Name": {
+      "value": "data"
+    },
+    "subnet3Prefix": {
+      "value": "172.21.249.0/25"
+    },
+    "vnetAddressPrefix": {
+      "value": "172.21.248.0/23"
+    },
+    "vnetName": {
+      "value": "sdlc"
+    }
+  }
+}
